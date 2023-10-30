@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+  namespace: helloworld
+  labels:
+    app: helloworld-nodejs 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld-nodejs
+  template:
+    metadata:
+      labels:
+        app: helloworld-nodejs
+        version: 1.0.0
+    spec:
+      containers:
+      - name: helloworld-nodejs
+        image: gcr.io/projectodemos/helloworld-nodejs:1.0.6
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "120m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-nodejs-lb
+  namespace: helloworld
+  labels:
+    app: helloworld-nodejs
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: helloworld-nodejs
+  
