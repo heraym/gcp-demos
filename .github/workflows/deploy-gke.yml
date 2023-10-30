@@ -16,6 +16,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GCLOUD_PROJECT: ${{ secrets.GKE_PROJECT }} 
   GKE_CLUSTER: demo-gke    # Add your cluster name here.
   GKE_ZONE: us-central1-b   # Add your cluster zone here.
   DEPLOYMENT_NAME: gke-test # Add your deployment name here.
