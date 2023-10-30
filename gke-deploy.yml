@@ -4,10 +4,15 @@
       "name": "gcr.io/cloud-builders/gke-deploy",
       "args": [
         "run",
-        "--filename=kubernetes-resource-file",
-        "--location=location",
-        "--cluster=cluster"
+        "--filename=kubernetes-config.yaml",
+        "--location=us-central1",
+        "--cluster=gke-demo"
       ]
     }
-  ]
+  ] ,
+  "options": {
+    "pool" : {
+      "name" : "projects/projectodemos/locations/us-central1/workerPools/cicd-github"
+    }
+  }
 }
